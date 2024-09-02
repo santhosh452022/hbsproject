@@ -22,7 +22,7 @@ function Dealerdetail() {
 
       try{
 
-          const response = await fetch('http://localhost:8000/StatusActive/', {
+          const response = await fetch('https://django-djreact-app-d5af3d4e3559.herokuapp.com/StatusActive/', {
             method:'POST',
             body: JSON.stringify({ status,dealer_id }), // Send the variable as JSON
             headers:{
@@ -48,7 +48,7 @@ function Dealerdetail() {
 
 
         try{
-            const response = await fetch('http://localhost:8000/StatusActive/', {
+            const response = await fetch('https://django-djreact-app-d5af3d4e3559.herokuapp.com/StatusActive/', {
               method:'POST',
               body: JSON.stringify({ status,dealer_id }), // Send the variable as JSON
               headers:{
