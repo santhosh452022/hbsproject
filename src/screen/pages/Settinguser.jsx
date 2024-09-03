@@ -3,8 +3,7 @@ import React, { useState } from 'react';
  
 const containerStyle = {
   fontFamily: 'Arial, sans-serif',
-  margin: '20px',
-  margin: '0 auto'
+  margin: '20px'
 };
  
 const listStyle = {

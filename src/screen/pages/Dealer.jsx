@@ -46,7 +46,7 @@ function Dealer() {
         POST_CODE: data[i].Post_Code,
         City: data[i].City,
         State: data[i].State,
-        Nationality: data[i].Nationality
+        // Nationality: data[i].Nationality
 
    
        
