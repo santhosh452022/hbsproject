@@ -9,54 +9,29 @@ function Dealerdetail() {
     const dealer_id= dealer.Dealer_ID;
     console.log(dealer.Aadhar_Img);
  
-    const [inputValue, setInputValue] = useState('');
-
-   const[approveColor,setapproveColor] = useState('blue');
-   const[rejectColor,setrejectColor] = useState('blue');
+    // console.log("The id is ",id);
+   
  
-    const handleInputChange = (event) => {
-      setInputValue(event.target.value);
-  }
-
-      const csrfToken = getCookie('csrftoken'); // Function to get the CSRF token
-
-  function getCookie(name) {
-      let cookieValue = null;
-      if (document.cookie && document.cookie !== '') {
-          const cookies = document.cookie.split(';');
-          for (let i = 0; i < cookies.length; i++) {
-              const cookie = cookies[i].trim();
-              if (cookie.substring(0, name.length + 1) === `${name}=`) {
-                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                  break;
-              }
-          }
-      }
-      return cookieValue;
-  }
     const declineButton = async (e) => {
       e.preventDefault();
  
       status =  "extradata";
      
-      setrejectColor('red');
+ 
       console.log("Decline Button Clicked",status);
-        
  
       try{
  
           const response = await fetch('https://django-djreact-app-d5af3d4e3559.herokuapp.com/StatusActive/', {
             method:'POST',
-            body: JSON.stringify({ status,dealer_id,inputValue }), // Send the variable as JSON
+            body: JSON.stringify({ status,dealer_id }), // Send the variable as JSON
             headers:{
               'Content-Type': 'application/json',
-              'X-CSRFToken': csrfToken,
+              'X-CSRFToken': getCookie('csrftoken'),
             },
         });
         if (response.ok){
           const data = await response.json();
-          console.log(inputValue);
-         
         }else{
           const data = await response.json();
         }
@@ -70,8 +45,7 @@ function Dealerdetail() {
         status = "approved";
  
         console.log("Approve Button Clicked",status);
-        setapproveColor('green');
-
+ 
  
         try{
             const response = await fetch('https://django-djreact-app-d5af3d4e3559.herokuapp.com/StatusActive/', {
@@ -79,7 +53,7 @@ function Dealerdetail() {
               body: JSON.stringify({ status,dealer_id }), // Send the variable as JSON
               headers:{
                 'Content-Type': 'application/json',
-                'X-CSRFToken': csrfToken,
+                'X-CSRFToken': getCookie('csrftoken'),
               },
           });
           if (response.ok){
@@ -142,19 +116,11 @@ function Dealerdetail() {
             <p><strong>Postcode:</strong> {dealer.POST_CODE}</p>
             <p><strong>Nationality:</strong> {dealer.Nationality}</p>  
             <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
-                <button className='approveButton' style={{ backgroundColor: approveColor, color: 'white', padding: '10px', border: 'none', cursor: 'pointer' }}
-  onClick={approveButton}>Approved</button>
-                <button className='rejectButton' style={{ backgroundColor: rejectColor, color: 'white', padding: '10px', border: 'none', cursor: 'pointer' }}
-  onClick={declineButton}>Rejected</button>
+                <button className='statusbutton' onClick={approveButton}>Approved</button>
+                <button className='statusbutton' onClick={declineButton}>Rejected</button>
                 <div style={{}}>
                     <span style={{fontSize:"20px",fontWeight: "700"}}>Enter queries/ Requirements :</span>
-                    <input
-                type="text"
-                value={inputValue}
-                onChange={handleInputChange}
-                placeholder=""
-            />
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <input/>
                 </div>
             </div>    
           </div>
@@ -162,5 +128,12 @@ function Dealerdetail() {
     );
 }
  
-
+ 
+const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  };
 export default Dealerdetail;
+ 
+has context menu
