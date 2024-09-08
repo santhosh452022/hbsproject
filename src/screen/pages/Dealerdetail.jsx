@@ -136,4 +136,3 @@ const getCookie = (name) => {
   };
 export default Dealerdetail;
  
-has context menu
