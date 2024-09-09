@@ -15,6 +15,7 @@ function Dealerdetail() {
     const declineButton = async (e) => {
       e.preventDefault();
  
+      
       status =  "extradata";
      
  
