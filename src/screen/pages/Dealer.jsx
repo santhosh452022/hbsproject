@@ -91,7 +91,7 @@ function Dealer() {
           <thead>
             <tr>
               <th>No:</th>
-              <th>Dealer Name:</th>
+              <th>dealer Name:</th>
               <th>Phone Number:</th>
               <th>Mail ID:</th>
             </tr>
